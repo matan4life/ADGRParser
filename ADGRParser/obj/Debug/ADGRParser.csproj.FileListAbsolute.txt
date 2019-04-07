@@ -1,0 +1,11 @@
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\bin\Debug\ADGRParser.exe.config
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\bin\Debug\ADGRParser.exe
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\bin\Debug\ADGRParser.pdb
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\obj\Debug\ADGRParser.csprojAssemblyReference.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\obj\Debug\ADGRParser.csproj.CoreCompileInputs.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\obj\Debug\ADGRParser.exe
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\obj\Debug\ADGRParser.pdb
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\bin\Debug\Newtonsoft.Json.dll
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\bin\Debug\Newtonsoft.Json.xml
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRParser\obj\Debug\ADGRParser.csproj.CopyComplete

@@ -1,0 +1,7 @@
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRPredictor\obj\Debug\ADGRPredictor.csproj.CoreCompileInputs.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRPredictor\bin\Debug\ADGRPredictor.exe.config
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRPredictor\bin\Debug\ADGRPredictor.exe
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRPredictor\bin\Debug\ADGRPredictor.pdb
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRPredictor\obj\Debug\ADGRPredictor.csprojAssemblyReference.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRPredictor\obj\Debug\ADGRPredictor.exe
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRPredictor\obj\Debug\ADGRPredictor.pdb
