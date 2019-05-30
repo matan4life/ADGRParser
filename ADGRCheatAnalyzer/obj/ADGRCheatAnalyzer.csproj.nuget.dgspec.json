@@ -1,0 +1,68 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\GIGABYTE\\source\\repos\\ADGRParser\\ADGRCheatAnalyzer\\ADGRCheatAnalyzer.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\GIGABYTE\\source\\repos\\ADGRParser\\ADGRCheatAnalyzer\\ADGRCheatAnalyzer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\GIGABYTE\\source\\repos\\ADGRParser\\ADGRCheatAnalyzer\\ADGRCheatAnalyzer.csproj",
+        "projectName": "ADGRCheatAnalyzer",
+        "projectPath": "C:\\Users\\GIGABYTE\\source\\repos\\ADGRParser\\ADGRCheatAnalyzer\\ADGRCheatAnalyzer.csproj",
+        "packagesPath": "C:\\Users\\GIGABYTE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\GIGABYTE\\source\\repos\\ADGRParser\\ADGRCheatAnalyzer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\GIGABYTE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

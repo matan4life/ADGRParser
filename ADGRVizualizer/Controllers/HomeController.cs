@@ -6,11 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ADGRVizualizer.Models;
 using System.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ADGRVizualizer.Controllers
 {
     public class HomeController : Controller
     {
+        public static DateTime CurrentDate { get; set; } = new DateTime(2018, 1, 1);
+        public async Task<IActionResult> ProfitDistribution()
+        {
+            var data = await GetProfits(CurrentDate.ToString("yyyy-MM-dd"));
+            var dates = new List<DateTime>();
+            Enumerable.Range(1, 30).ToList().ForEach(x => dates.Add(new DateTime(2018, 1, x)));
+            ViewBag.Dates = dates.Select(x => new SelectListItem() { Value = x.ToShortDateString(), Text = x.ToShortDateString() }).ToList();
+            return View((new SelectListItem()
+            {
+                Value = CurrentDate.ToShortDateString(),
+                Text = CurrentDate.ToShortDateString()
+            }, data));
+        }
         public IActionResult Index()
         {
             List<SimpleReportViewModel> DAU = new List<SimpleReportViewModel>();
@@ -23,10 +37,12 @@ namespace ADGRVizualizer.Controllers
             List<SimpleReportViewModel> RevenuePredicted = new List<SimpleReportViewModel>();
             List<SimpleReportViewModel> ItemsPredicted = new List<SimpleReportViewModel>();
             List<SimpleReportViewModel> USDPredicted = new List<SimpleReportViewModel>();
+            var currency = new List<SimpleReportViewModel>();
+            var loseRate = new List<SimpleReportViewModel>();
             using (SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ADGR;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
             {
                 connection.Open();
-                string sql = "SELECT [Date], [DAU], [NewUsers], [Revenue], [Items], [ItemsUSDIncome] FROM [Statistics]";
+                string sql = "SELECT [Date], [DAU], [NewUsers], [Revenue], [Items], [ItemsUSDIncome], [Currency], CAST(Loss AS float) / Starts FROM [Statistics]";
                 var command = new SqlCommand(sql, connection);
                 using (var reader = command.ExecuteReader())
                 {
@@ -56,6 +72,16 @@ namespace ADGRVizualizer.Controllers
                         {
                             DimensionOne = Convert.ToDateTime(reader[0]).ToShortDateString(),
                             Quantity = Convert.ToDecimal(reader[5])
+                        });
+                        currency.Add(new SimpleReportViewModel()
+                        {
+                            DimensionOne = reader.GetDateTime(0).ToShortDateString(),
+                            Quantity = reader.GetDecimal(6)
+                        });
+                        loseRate.Add(new SimpleReportViewModel()
+                        {
+                            DimensionOne = reader.GetDateTime(0).ToShortDateString(),
+                            Quantity = Convert.ToDecimal(reader.GetDouble(7))
                         });
                     }
                 }
@@ -94,7 +120,7 @@ namespace ADGRVizualizer.Controllers
                     }
                 }
             }
-            return View((DAU, NewUsers, Revenue, Items, USD, DAUPredicted, NewUsersPredicted, RevenuePredicted, ItemsPredicted, USDPredicted));
+            return View((DAU, NewUsers, Revenue, Items, USD, DAUPredicted, NewUsersPredicted, RevenuePredicted, ItemsPredicted, USDPredicted, currency, loseRate));
         }
 
         public IActionResult Privacy()
@@ -106,6 +132,35 @@ namespace ADGRVizualizer.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult ChangeDate(string date, string returnUrl)
+        {
+            CurrentDate = DateTime.Parse(date);
+            return RedirectToAction("ProfitDistribution");
+        }
+
+        public async Task<List<SimpleReportViewModel>> GetProfits(string date)
+        {
+            var result = new List<SimpleReportViewModel>();
+            using (var connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ADGR;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            {
+                await connection.OpenAsync();
+                string sql = $"SELECT ChestName, SUM(Price) FROM Currency WHERE Date = '{date}' GROUP BY ChestName";
+                var command = new SqlCommand(sql, connection);
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new SimpleReportViewModel()
+                        {
+                            DimensionOne = reader.GetString(0),
+                            Quantity = reader.GetDecimal(1)
+                        });
+                    }
+                    return result;
+                }
+            }
         }
     }
 }

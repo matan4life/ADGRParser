@@ -1,0 +1,218 @@
+﻿@model (SelectListItem, (List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>, List<SimpleReportViewModel>))
+@{
+    var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item1.Select(x => x.DimensionOne).ToList());
+    var DAUYValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item1.Select(x => x.Quantity).ToList());
+    var NewUsersYValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item2.Select(x => x.Quantity).ToList());
+    var RevenueYValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item3.Select(x => x.Quantity).ToList());
+    var ItemsYValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item4.Select(x => x.Quantity).ToList());
+    var USDIncomeYValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item5.Select(x => x.Quantity).ToList());
+    var XLabelsPredicted = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item6.Select(x => x.DimensionOne).ToList());
+    var DAUYValuesPredicted = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item6.Select(x => x.Quantity).ToList());
+    var NewUsersYValuesPredicted = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item7.Select(x => x.Quantity).ToList());
+    var RevenueYValuesPredicted = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item8.Select(x => x.Quantity).ToList());
+    var ItemsYValuesPredicted = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item9.Select(x => x.Quantity).ToList());
+    var USDIncomeYValuesPredicted = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item10.Select(x => x.Quantity).ToList());
+    var Currency = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item11.Select(x => x.Quantity).ToList());
+    var LoseRate = Newtonsoft.Json.JsonConvert.SerializeObject(Model.Item2.Item12.Select(x => x.Quantity).ToList());
+    ViewData["Title"] = "Index";
+}
+
+<body>
+    <h1>Charts for cluster # @Model.Item1.Value</h1>
+    <form asp-controller="MultipleCluster" asp-action="ChangeCluster" asp-route-returnUrl="@Context.Request.Path" method="post" class="form-horizontal">
+        <select name="clusterId" onchange="this.form.submit();" asp-for="Item1.Value" asp-items="ViewBag.Clusters"></select>
+    </form>
+    <div class="box-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="chart-container col-xl-6">
+                    <canvas id="chart1" style="height: 800px"></canvas>
+                </div>
+                <div class="chart-container col-xl-6">
+                    <canvas id="chart2" style="height: 800px"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+
+        $(function () {
+            var chartName = "chart1";
+            var chartName1 = "chart2";
+            var ctx = document.getElementById(chartName).getContext('2d');
+            var ctx1 = document.getElementById(chartName1).getContext('2d');
+        var data = {
+                labels: @Html.Raw(XLabels),
+                datasets: [{
+                    label: "DAU Chart",
+                    backgroundColor: [
+                        'rgba(90, 13, 172, 0.3)'
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(DAUYValues)
+                }, {
+                    label: "New Users Chart",
+                    backgroundColor: [
+                        'rgba(11, 95, 164, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(NewUsersYValues)
+                }, {
+                    label: "Revenue Chart",
+                    backgroundColor: [
+                        'rgba(0, 203, 0, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(RevenueYValues)
+                }, {
+                    label: "Items Chart",
+                    backgroundColor: [
+                        'rgba(254, 193, 0, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(ItemsYValues)
+                }, {
+                    label: "USD Income Chart",
+                    backgroundColor: [
+                        'rgba(254, 35, 0, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(USDIncomeYValues)
+                },
+                {
+                    label: "Currency",
+                    backgroundColor: [
+                        'rgba(200, 20, 10, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(Currency)
+                },
+                {
+                    label: "Lose Rate",
+                    backgroundColor: [
+                        'rgba(0, 100, 200, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(LoseRate)
+                }]
+            };
+            var data1 = {
+                labels: @Html.Raw(XLabelsPredicted),
+                datasets: [{
+                    label: "DAU Chart Predicted",
+                    backgroundColor: [
+                        'rgba(90, 13, 172, 0.3)'
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(DAUYValuesPredicted)
+                }, {
+                    label: "New Users Chart Predicted",
+                    backgroundColor: [
+                        'rgba(11, 95, 164, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(NewUsersYValuesPredicted)
+                }, {
+                    label: "Revenue Chart Predicted",
+                    backgroundColor: [
+                        'rgba(0, 203, 0, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(RevenueYValuesPredicted)
+                }, {
+                    label: "Items Chart Predicted",
+                    backgroundColor: [
+                        'rgba(254, 193, 0, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(ItemsYValuesPredicted)
+                }, {
+                    label: "USD Income Chart Predicted",
+                    backgroundColor: [
+                        'rgba(254, 35, 0, 0.3)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 255, 255, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    data: @Html.Raw(USDIncomeYValuesPredicted)
+                }]
+            };
+
+            var options = {
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: true,
+                            color: "rgba(255,99,164,0.3)"
+                        }
+}],
+                    xAxes: [{
+                        ticks: {
+                            min: 0,
+                            beginAtZero: true
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                }
+            };
+
+       var myChart = new  Chart(ctx, {
+                options: options,
+                data: data,
+                type:'line'
+
+       });
+                var myChart1 = new Chart(ctx1, { options: options, data: data1, type: 'line' });
+        });
+
+
+</script>
+
+

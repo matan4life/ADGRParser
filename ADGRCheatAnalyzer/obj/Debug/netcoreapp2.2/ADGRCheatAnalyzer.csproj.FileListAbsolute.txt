@@ -1,0 +1,11 @@
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\bin\Debug\netcoreapp2.2\ADGRCheatAnalyzer.deps.json
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\bin\Debug\netcoreapp2.2\ADGRCheatAnalyzer.runtimeconfig.json
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\bin\Debug\netcoreapp2.2\ADGRCheatAnalyzer.runtimeconfig.dev.json
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\bin\Debug\netcoreapp2.2\ADGRCheatAnalyzer.dll
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\obj\Debug\netcoreapp2.2\ADGRCheatAnalyzer.csprojAssemblyReference.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\obj\Debug\netcoreapp2.2\ADGRCheatAnalyzer.csproj.CoreCompileInputs.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\obj\Debug\netcoreapp2.2\ADGRCheatAnalyzer.AssemblyInfoInputs.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\obj\Debug\netcoreapp2.2\ADGRCheatAnalyzer.AssemblyInfo.cs
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\bin\Debug\netcoreapp2.2\ADGRCheatAnalyzer.pdb
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\obj\Debug\netcoreapp2.2\ADGRCheatAnalyzer.dll
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRCheatAnalyzer\obj\Debug\netcoreapp2.2\ADGRCheatAnalyzer.pdb

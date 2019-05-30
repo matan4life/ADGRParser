@@ -1,0 +1,11 @@
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\bin\Debug\netcoreapp2.2\ADGRClusteriser.deps.json
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\bin\Debug\netcoreapp2.2\ADGRClusteriser.runtimeconfig.json
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\bin\Debug\netcoreapp2.2\ADGRClusteriser.runtimeconfig.dev.json
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\bin\Debug\netcoreapp2.2\ADGRClusteriser.dll
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\obj\Debug\netcoreapp2.2\ADGRClusteriser.csprojAssemblyReference.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\obj\Debug\netcoreapp2.2\ADGRClusteriser.csproj.CoreCompileInputs.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\obj\Debug\netcoreapp2.2\ADGRClusteriser.AssemblyInfoInputs.cache
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\obj\Debug\netcoreapp2.2\ADGRClusteriser.AssemblyInfo.cs
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\bin\Debug\netcoreapp2.2\ADGRClusteriser.pdb
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\obj\Debug\netcoreapp2.2\ADGRClusteriser.dll
+C:\Users\GIGABYTE\source\repos\ADGRParser\ADGRClusteriser\obj\Debug\netcoreapp2.2\ADGRClusteriser.pdb

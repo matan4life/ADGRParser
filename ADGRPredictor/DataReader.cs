@@ -10,8 +10,9 @@ namespace ADGRPredictor
     static class DataReader
     {
         public static string ConnectionString { get; set; } = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ADGR;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string ConnectionString1 { get; set; } = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ADGR1;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
-        public static Dictionary<int, T> GetData<T>(string column)
+        public static Dictionary<int, T> GetData<T, U>(U clusterId, string column, string tableName, string clusterColumnName)
         {
             var result = new Dictionary<int, T>();
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -20,8 +21,9 @@ namespace ADGRPredictor
                 string sql = "SELECT [Date] FROM [Statistics]";
                 var command = new SqlCommand(sql, connection);
                 var firstDate = Convert.ToDateTime(command.ExecuteScalar());
-                sql = $"SELECT [Date], [{column}] FROM [Statistics]";
+                sql = $"SELECT [Date], [{column}] FROM [{tableName}] WHERE {clusterColumnName} = @cluster";
                 command = new SqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@cluster", clusterId);
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -54,15 +56,16 @@ namespace ADGRPredictor
             return result;
         }
 
-        public static void UploadInfo(List<DateTime> dates, List<int> DAUs, List<int> NewUsers, List<decimal> Revenues, List<int> Items, List<decimal> Income)
+        public static void UploadInfo<T>(T clusterId, string tableName, List<DateTime> dates, List<int> DAUs, List<int> NewUsers, List<decimal> Revenues, List<int> Items, List<decimal> Income)
         {
-            using (var connection = new SqlConnection(ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString1))
             {
                 connection.Open();
-                string sql = "INSERT INTO [Predictions] VALUES(@d, @dau, @new, @rev, @it, @inc)";
+                string sql = $"INSERT INTO [{tableName}] VALUES(@c, @d, @dau, @new, @rev, @it, @inc)";
                 foreach (var date in dates)
                 {
                     var command = new SqlCommand(sql, connection);
+                    command.Parameters.AddWithValue("@c", clusterId);
                     command.Parameters.AddWithValue("@d", date);
                     command.Parameters.AddWithValue("@dau", DAUs[dates.IndexOf(date)]);
                     command.Parameters.AddWithValue("@new", NewUsers[dates.IndexOf(date)]);
